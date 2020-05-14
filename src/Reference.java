@@ -12,6 +12,4 @@ public class Reference implements Expression {
     public MaybeValue evaluate() {
         return null;
     }
-
-
 }
