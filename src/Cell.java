@@ -1,10 +1,8 @@
-import Value.MaybeValue;
 import Value.NoValue;
 
 public class Cell {
     MaybeValue val;
     Expression exp;
-    Reference ref;
 
     public Cell(){
         val=new NoValue();

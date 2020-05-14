@@ -1,8 +1,5 @@
-package Operations;
 
-import java.beans.Expression;
-
-public abstract class Operation {
+public abstract class Operation implements Expression {
     Expression exp1, exp2;
 
     public Operation(Expression e1, Expression e2){
@@ -11,4 +8,5 @@ public abstract class Operation {
     }
 
     public int operate(int i1, int i2){ return 0; }
+
 }

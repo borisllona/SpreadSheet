@@ -1,11 +1,9 @@
 import java.util.Set;
 
-
-public class Reference implements Expression {
-    Cell Ref;
-
-    public Reference(Cell ref){
-        this.Ref=ref;
+public abstract class MaybeValue implements Expression {
+    private boolean hasValue;
+    public boolean hasValue(){
+        return hasValue;
     }
 
     @Override
