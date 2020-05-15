@@ -1,3 +1,6 @@
+import  Operations.*;
+import Value.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SpreadSheetTest {
     @BeforeEach
     public void setUpSheet(){
-        put("a3", mult("a1", "a2"));
+        put("a3", SpreadSheet.mult("a1", "a2"));
     }
 
     @Test
