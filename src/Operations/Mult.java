@@ -1,6 +1,3 @@
-import Operations.Operation;
-import Value.MaybeValue;
-
 import java.util.Set;
 
 public class Mult extends Operation {

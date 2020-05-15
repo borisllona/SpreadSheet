@@ -1,5 +1,3 @@
-package Operations;
-
 import java.util.Set;
 
 public class Plus extends Operation {
