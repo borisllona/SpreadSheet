@@ -1,4 +1,3 @@
-
 public class SpreadSheet {
     private static int SIZE=5;
     private static final Sheet SHEET = new Sheet(SIZE);
@@ -24,7 +23,8 @@ public class SpreadSheet {
     }
     //Plus combinations//
     public static Expression plus(Expression expr1, Expression expr2){
-        return null;
+        Operation op = new Plus(expr1, expr2);
+        return op;
     }
 
     public static Expression plus(Expression expr1, int value2){
