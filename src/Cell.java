@@ -1,12 +1,9 @@
-import Value.MaybeValue;
-import Value.NoValue;
-
 public class Cell {
     MaybeValue val;
     Expression exp;
 
     public Cell(){
-        val=new NoValue();
+        val= new NoValue();
     }
 
     public MaybeValue evaluate(){

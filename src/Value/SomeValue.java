@@ -1,4 +1,3 @@
-package Value;
 
 public class SomeValue extends MaybeValue {
     int value;
