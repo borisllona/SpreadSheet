@@ -1,6 +1,6 @@
 package Operations;
 
-import java.beans.Expression;
+import java.util.Set;
 
 public class Plus extends Operation {
 
@@ -8,4 +8,13 @@ public class Plus extends Operation {
         super(e1, e2);
     }
 
+    @Override
+    public MaybeValue evaluate() {
+        return null;
+    }
+
+    @Override
+    public Set<Cell> references() {
+        return null;
+    }
 }
