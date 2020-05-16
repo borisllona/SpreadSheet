@@ -1,4 +1,10 @@
+package spreadsheet;
+
 import Value.MaybeValue;
+import spreadsheet.Cell;
+import spreadsheet.Expression;
+
+import java.util.Set;
 
 
 public class Reference implements Expression {
@@ -10,6 +16,11 @@ public class Reference implements Expression {
 
     @Override
     public MaybeValue evaluate() {
+        return null;
+    }
+
+    @Override
+    public Set<Cell> references() {
         return null;
     }
 

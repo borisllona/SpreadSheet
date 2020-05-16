@@ -1,6 +1,9 @@
 package Value;
 
-public abstract class MaybeValue {
+
+import spreadsheet.Expression;
+
+public abstract class MaybeValue  implements Expression {
     private boolean hasValue;
     public boolean hasValue(){
         return hasValue;
