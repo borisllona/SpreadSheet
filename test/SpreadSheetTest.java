@@ -17,6 +17,21 @@ public class SpreadSheetTest {
     public void cell_has_no_value_if_depends_on_empty_cells() {
         assertFalse(get("a3").hasValue());
     }
+
+    @Test
+    public void cell_no_value_with_just_one_assignment(){
+        put("a1",10);
+        assertTrue(get("a1").hasValue()));
+        assertFalse(get("a3").hasValue());
+    }
+
+    @Test
+    void given_wrong_value_exception() throws WrongValueException{
+        assertThrows(WrongValueException.class,
+                () -> put("a2","Test"));
+    }
+
+
     @Test
     public void recalculation_works(){
         put("a1",42);
