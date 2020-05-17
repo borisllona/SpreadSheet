@@ -1,3 +1,8 @@
+package spreadsheet;
+
+import Value.MaybeValue;
+import Value.NoValue;
+
 import java.util.Set;
 
 public class Cell /*implements ChangeListener*/{

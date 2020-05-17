@@ -1,3 +1,7 @@
+package Value;
+
+import spreadsheet.Cell;
+
 import java.util.Set;
 
 public class NoValue extends MaybeValue {

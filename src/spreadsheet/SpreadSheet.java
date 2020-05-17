@@ -1,3 +1,9 @@
+package spreadsheet;
+
+import Operations.Plus;
+import Value.MaybeValue;
+import Value.SomeValue;
+
 public class SpreadSheet {
     private static int SIZE=5;
     private static final Sheet SHEET = new Sheet(SIZE);
