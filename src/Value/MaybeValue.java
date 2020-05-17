@@ -1,5 +1,7 @@
+package Value;
 
-import java.util.Set;
+
+import spreadsheet.Expression;
 
 public abstract class MaybeValue implements Expression {
     private boolean hasValue;
@@ -8,8 +10,5 @@ public abstract class MaybeValue implements Expression {
         return hasValue;
     }
 
-    @Override
-    public Set<Cell> references() {
-        return null;
-    }
+
 }

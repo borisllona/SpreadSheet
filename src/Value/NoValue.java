@@ -1,6 +1,11 @@
+package Value;
+
+import spreadsheet.Cell;
+
+import java.util.Set;
 
 public class NoValue extends MaybeValue {
-    NoValue nV = null;
+    public static final NoValue INSTANCE = new NoValue();
 
     //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
     @Override
@@ -11,15 +16,17 @@ public class NoValue extends MaybeValue {
 
     @Override
     public MaybeValue evaluate() {
-        if( nV == null){
-            nV = new NoValue();
-        }
-        return nV;
+        return NoValue.INSTANCE;
     }
 
     @Override
     public void expChanged() {
 
+    }
+
+    @Override
+    public Set<Cell> references() {
+        return null;
     }
 
     @Override

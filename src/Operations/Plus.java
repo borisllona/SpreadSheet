@@ -1,3 +1,9 @@
+package Operations;
+
+import Value.MaybeValue;
+import spreadsheet.Cell;
+import spreadsheet.Expression;
+
 import java.util.Set;
 
 public class Plus extends Operation {

@@ -1,3 +1,7 @@
+package Operations;
+
+import spreadsheet.Expression;
+
 public abstract class Operation implements Expression {
     Expression exp1, exp2;
 
