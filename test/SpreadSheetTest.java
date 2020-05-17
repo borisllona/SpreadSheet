@@ -22,7 +22,7 @@ public class SpreadSheetTest {
     @Test
     public void cell_no_value_with_just_one_assignment() throws NotValidCellException {
         put("a1",10);
-        assertTrue(get("a1").hasValue()));
+        assertTrue(get("a1").hasValue());
         assertFalse(get("a3").hasValue());
     }
 
