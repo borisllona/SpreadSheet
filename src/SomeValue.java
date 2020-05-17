@@ -1,3 +1,4 @@
+import java.util.Set;
 
 public class SomeValue extends MaybeValue {
     int value;
@@ -21,13 +22,14 @@ public class SomeValue extends MaybeValue {
     }
 
     @Override
-    public void expChanged() {
-
+    public Set<Cell> references() {
+        return null;
     }
 
     @Override
-    public void addListener(Cell cell) {
+    public void expChanged() { }
 
-    }
+    @Override
+    public void addListener(Cell cell) { }
 
 }

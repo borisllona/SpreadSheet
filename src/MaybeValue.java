@@ -8,8 +8,5 @@ public abstract class MaybeValue implements Expression {
         return hasValue;
     }
 
-    @Override
-    public Set<Cell> references() {
-        return null;
-    }
+
 }
