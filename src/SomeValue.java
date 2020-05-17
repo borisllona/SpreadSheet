@@ -14,4 +14,10 @@ public class SomeValue extends MaybeValue {
     public boolean hasValue() {
         return true;
     }
+
+    @Override
+    public MaybeValue evaluate() {
+        return new SomeValue(this.value);
+    }
+
 }

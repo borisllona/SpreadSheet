@@ -9,11 +9,6 @@ public abstract class MaybeValue implements Expression {
     }
 
     @Override
-    public MaybeValue evaluate() {
-        return null;
-    }
-
-    @Override
     public Set<Cell> references() {
         return null;
     }

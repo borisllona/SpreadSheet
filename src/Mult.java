@@ -14,4 +14,8 @@ public class Mult extends Operation {
     public Set<Cell> references() {
         return null;
     }
+
+    public int operate(int i1, int i2){
+        return i1 * i2;
+    }
 }

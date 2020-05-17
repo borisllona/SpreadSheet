@@ -8,16 +8,23 @@ public class SpreadSheet {
     }
 
     public static void put(String name, Expression expr) throws NotValidCellException {
+        expr.addListener(SHEET.getRef(name));
         SHEET.setExpression(name, expr);
+        //Expression -> ref, Value, operation
+        //references = expr.references()
+        //references notificar canvi
     }
 
     public static void put(String name, int value) throws NotValidCellException {
         SHEET.setExpression(name, new SomeValue(value));
+        //Expression  = value -> SomeValue a la cel·la name. name notifica als seus listeners
     }
 
     public static void put(String name, String refName) throws NotValidCellException {
-        Reference r = new Reference(SHEET.getRef(refName));
+        Reference r = new Reference(SHEET.getRef(refName)); //TODO: referencia ja creada i no nova??
         SHEET.setExpression(name, r);
+        //Expression = referencia -> Cel·la: name escolta a la referència, afegir a la taula de refname
+        //la cela name.
     }
 
     public static void clear(){

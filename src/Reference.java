@@ -10,11 +10,21 @@ public class Reference implements Expression {
 
     @Override
     public MaybeValue evaluate() {
-        return null;
+        return Ref.evaluate();
     }
 
     @Override
     public Set<Cell> references() {
-        return null;
+        return Ref.getReferences();
+    }
+
+    @Override
+    public void expChanged() {
+
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
     }
 }

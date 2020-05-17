@@ -4,6 +4,7 @@ public class Sheet {
     private static final int ASCI=97;
 
     private HashMap<String, Cell> table = new HashMap<>();
+    private HashMap<String, Reference> cellReferences = new HashMap<>();
 
     public Sheet(int size) {
         createStructure(size);
