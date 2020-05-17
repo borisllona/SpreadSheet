@@ -22,11 +22,18 @@ public class SomeValue extends MaybeValue {
 
     @Override
     public MaybeValue evaluate() {
-        return null;
+        return new SomeValue(this.value);
     }
 
     @Override
     public Set<Cell> references() {
         return null;
     }
+
+    @Override
+    public void expChanged() { }
+
+    @Override
+    public void addListener(Cell cell) { }
+
 }

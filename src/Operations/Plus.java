@@ -6,7 +6,7 @@ import spreadsheet.Expression;
 
 import java.util.Set;
 
-public class Plus extends Operation{
+public class Plus extends Operation {
 
     public Plus(Expression e1, Expression e2) {
         super(e1, e2);
@@ -22,8 +22,17 @@ public class Plus extends Operation{
         return null;
     }
 
+    @Override
+    public void expChanged() {
 
-    public int operate(int i1, int i2)
-    { return 0; }
+    }
 
+    @Override
+    public void addListener(Cell cell) {
+
+    }
+
+    public int operate(int i1, int i2){
+        return i1 + i2;
+    }
 }

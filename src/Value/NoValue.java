@@ -2,17 +2,15 @@ package Value;
 
 import spreadsheet.Cell;
 
-import java.util.*;
+import java.util.Set;
 
-public class NoValue extends MaybeValue{
-
-   public static final NoValue INSTANCE = new NoValue();
-
-   private NoValue(){}
+public class NoValue extends MaybeValue {
+    public static final NoValue INSTANCE = new NoValue();
 
     //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
     @Override
     public boolean hasValue() {
+        /* No se si es necessari */
         return false;
     }
 
@@ -22,8 +20,17 @@ public class NoValue extends MaybeValue{
     }
 
     @Override
+    public void expChanged() {
+
+    }
+
+    @Override
     public Set<Cell> references() {
-        // todo: retorno llista buida. Pendent de test per veure si funciona
-        return new HashSet<>();
+        return null;
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
     }
 }
