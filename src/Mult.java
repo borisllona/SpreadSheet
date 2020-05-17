@@ -1,0 +1,31 @@
+import java.util.Set;
+
+public class Mult extends Operation {
+    public Mult(Expression e1, Expression e2) {
+        super(e1, e2);
+    }
+
+    @Override
+    public MaybeValue evaluate() {
+        return null;
+    }
+
+    @Override
+    public Set<Cell> references() {
+        return null;
+    }
+
+    @Override
+    public void expChanged() {
+
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
+    }
+
+    public int operate(int i1, int i2){
+        return i1 * i2;
+    }
+}
