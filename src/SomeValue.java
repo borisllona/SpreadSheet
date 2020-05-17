@@ -20,4 +20,14 @@ public class SomeValue extends MaybeValue {
         return new SomeValue(this.value);
     }
 
+    @Override
+    public void expChanged() {
+
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
+    }
+
 }

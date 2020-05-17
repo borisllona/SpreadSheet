@@ -16,6 +16,16 @@ public class Plus extends Operation {
         return null;
     }
 
+    @Override
+    public void expChanged() {
+
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
+    }
+
     public int operate(int i1, int i2){
         return i1 + i2;
     }

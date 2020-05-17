@@ -26,7 +26,7 @@ public class Cell /*implements ChangeListener*/{
 
     private void notifyReferences(Expression e) {
         for(Cell cell : cellReferences){
-            cell.expChanged(e);
+            //cell.expChanged(e);
         }
     }
 

@@ -16,4 +16,14 @@ public class NoValue extends MaybeValue {
         }
         return nV;
     }
+
+    @Override
+    public void expChanged() {
+
+    }
+
+    @Override
+    public void addListener(Cell cell) {
+
+    }
 }
