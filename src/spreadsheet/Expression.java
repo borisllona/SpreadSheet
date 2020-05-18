@@ -9,4 +9,6 @@ public interface Expression {
     Set<Cell> references();
 //    void expChanged();
     void addListener(Cell cell);
+
+    void notifyListeners(Set<Cell> references, Expression expr);
 }

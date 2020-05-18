@@ -26,4 +26,11 @@ public class Reference implements Expression {
     public void addListener(Cell cell) {
         references.add(cell);
     }
+
+    @Override
+    public void notifyListeners(Set<Cell> references, Expression expr) {
+        for(Cell cell : references){
+            cell.expChanged(expr);
+        }
+    }
 }

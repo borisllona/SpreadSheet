@@ -10,9 +10,12 @@ public class Cell implements ChangeListener{
 
     public Cell(){
         val = new NoValue();
+        val.addListener(this);
+        exp = val;
     }
 
     public MaybeValue evaluate(){
+
         return this.val;
     }
 
@@ -45,8 +48,10 @@ public class Cell implements ChangeListener{
     @Override
     public void expChanged(Expression e) {
         //notify current expression
+        if(exp.references().size()==0){
+            exp.notifyListeners(exp.references(), e);
+        }
         this.exp = e;
-
-
+        this.val = exp.evaluate();
     }
 }

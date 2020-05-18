@@ -1,6 +1,7 @@
 package Value;
 
 import spreadsheet.Cell;
+import spreadsheet.Expression;
 
 import java.util.Set;
 
@@ -16,11 +17,11 @@ public class SomeValue extends MaybeValue {
         return this.value;
     }
 
-  /*  @Override
+    @Override
     public boolean hasValue() {
-        return true;
+        return super.hasValue();
     }
-*/
+
     @Override
     public MaybeValue evaluate() {
         return new SomeValue(this.value);
@@ -36,4 +37,10 @@ public class SomeValue extends MaybeValue {
         references.add(cell);
     }
 
+    @Override
+    public void notifyListeners(Set<Cell> references, Expression expr) {
+        for(Cell cell : references){
+            cell.expChanged(expr);
+        }
+    }
 }
