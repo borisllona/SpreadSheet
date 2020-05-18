@@ -1,6 +1,7 @@
 package Operations;
 
 import Value.MaybeValue;
+import Value.NoValue;
 import spreadsheet.Cell;
 import spreadsheet.Expression;
 
@@ -14,17 +15,17 @@ public class Plus extends Operation {
 
     @Override
     public MaybeValue evaluate() {
-        return null;
+        MaybeValue v1 = exp1.evaluate();
+        MaybeValue v2 = exp2.evaluate();
+        if(v1.hasValue() && v2.hasValue()){
+            //return operate(v1.value, v2.value);
+        }
+        return new NoValue();
     }
 
     @Override
     public Set<Cell> references() {
         return null;
-    }
-
-    @Override
-    public void expChanged() {
-
     }
 
     @Override

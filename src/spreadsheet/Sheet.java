@@ -3,6 +3,7 @@ package spreadsheet;
 import Value.MaybeValue;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Sheet {
     private static final int ASCI=97;
@@ -54,9 +55,18 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
+        expr.addListener(getRef(name));
+        Set<Cell> references = expr.references();
+        notifyListeners(references, expr);
         Cell keyCell = table.get(name);
         keyCell.set(expr);
         table.put(name, keyCell);
+    }
+
+    private void notifyListeners(Set<Cell> references, Expression expr) {
+        for(Cell cell : references){
+            cell.expChanged(expr);
+        }
     }
 
     public void clearTable(int size) {

@@ -14,11 +14,16 @@ public class SpreadSheet {
     }
 
     public static void put(String name, Expression expr) throws NotValidCellException {
-        expr.addListener(SHEET.getRef(name));
-        SHEET.setExpression(name, expr);
-        //Expression -> ref, Value, operation
-        //references = expr.references()
-        //references notificar canvi
+
+
+        //reference name, notifyAll references(expr)
+        //EVALUATE de la cela name
+        //Tenim el maybeValue(NV o SV) de l'evaluate
+        //maybeValue.preferences()
+        //notify preferences amb la nova expresió
+        //expr.addListener(SHEET.getRef(name));   //afegim a la nova expresio el listener name
+        SHEET.setExpression(name, expr);        //definim l'expresió nova a la cela
+
     }
 
     public static void put(String name, int value) throws NotValidCellException {
