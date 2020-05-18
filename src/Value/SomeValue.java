@@ -9,6 +9,7 @@ public class SomeValue extends MaybeValue {
     private Set<Cell> references;
 
     public SomeValue(int value){
+        super.setValue(true);
         this.value=value;
     }
 
@@ -16,11 +17,11 @@ public class SomeValue extends MaybeValue {
         return this.value;
     }
 
-    @Override
+  /*  @Override
     public boolean hasValue() {
         return true;
     }
-
+*/
     @Override
     public MaybeValue evaluate() {
         return new SomeValue(this.value);

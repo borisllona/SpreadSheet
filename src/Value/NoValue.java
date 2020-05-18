@@ -8,7 +8,9 @@ public class NoValue extends MaybeValue {
     public static final NoValue INSTANCE = new NoValue();
     private Set<Cell> references;
 
-    public NoValue() { }
+    public NoValue() {
+        super.setValue(false);
+    }
 
     //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
     @Override

@@ -9,6 +9,8 @@ public abstract class MaybeValue implements Expression {
     public boolean hasValue(){
         return hasValue;
     }
-
+    public void setValue(boolean hasValue){
+       this.hasValue = hasValue;
+    }
 
 }
