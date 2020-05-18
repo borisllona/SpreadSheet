@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class NoValue extends MaybeValue {
     public static final NoValue INSTANCE = new NoValue();
-    private Set<Cell> references;
 
     public NoValue() {
         super.setValue(false);

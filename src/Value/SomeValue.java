@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class SomeValue extends MaybeValue {
     int value;
-    private Set<Cell> references;
 
     public SomeValue(int value){
         super.setValue(true);
@@ -29,7 +28,7 @@ public class SomeValue extends MaybeValue {
 
     @Override
     public Set<Cell> references() {
-        return this.references;
+        return references;
     }
 
     @Override

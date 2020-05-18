@@ -33,7 +33,7 @@ public class Mult extends Operation {
 
     @Override
     public void addListener(Cell cell) {
-        references.add(cell);
+        super.references.add(cell);
     }
 
     public int operate(int i1, int i2){

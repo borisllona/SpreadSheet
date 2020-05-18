@@ -30,12 +30,12 @@ public class Plus extends Operation {
 
     @Override
     public Set<Cell> references() {
-        return this.references;
+        return references;
     }
 
     @Override
     public void addListener(Cell cell) {
-        this.references.add(cell);
+        references.add(cell);
     }
 
     public int operate(int i1, int i2){
