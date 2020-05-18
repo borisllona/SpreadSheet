@@ -3,7 +3,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spreadsheet.NotValidCellException;
-import spreadsheet.SpreadSheet;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static spreadsheet.SpreadSheet.*;
@@ -11,7 +10,7 @@ import static spreadsheet.SpreadSheet.*;
 public class SpreadSheetTest {
     @BeforeEach
     public void setUpSheet() throws NotValidCellException {
-        put("a3", SpreadSheet.mult("a1", "a2"));
+        put("a3", mult("a1", "a2"));
     }
 
     @Test

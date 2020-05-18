@@ -3,15 +3,13 @@ package spreadsheet;
 import Value.MaybeValue;
 import Value.NoValue;
 
-import java.util.Set;
-
-public class Cell /*implements ChangeListener*/{
+public class Cell implements ChangeListener{
     MaybeValue val;
     Expression exp;
-    Set<Cell> cellReferences;
+   // Set<Cell> cellReferences;
 
     public Cell(){
-        val= new NoValue();
+        val = new NoValue();
     }
 
     public MaybeValue evaluate(){
@@ -20,27 +18,35 @@ public class Cell /*implements ChangeListener*/{
 
     public void set(Expression exp){
         this.exp = exp;
-        notifyReferences(exp);
+        //notifyReferences(exp);
     }
 
   /*  @Override
     public void expChanged(Expression e) {
         this.exp = e;
         notifyReferences(e);
-    }*/
+    }
 
-    private void notifyReferences(Expression e) {
+  /*  private void notifyReferences(Expression e) {
         for(Cell cell : cellReferences){
             //cell.expChanged(e);
         }
     }
 
-   /* @Override
+    @Override
     public void addListener(Cell cell) {
         cellReferences.add(cell);
-    }*/
+    }
 
     public Set<Cell> getReferences() {
         return this.cellReferences;
+    }*/
+
+    @Override
+    public void expChanged(Expression e) {
+        //notify current expression
+        this.exp = e;
+
+
     }
 }
