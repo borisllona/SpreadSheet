@@ -3,12 +3,13 @@ package spreadsheet;
 import Value.MaybeValue;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Sheet {
     private static final int ASCI=97;
 
     private HashMap<String, Cell> table = new HashMap<>();
-    private HashMap<String, Reference> cellReferences = new HashMap<>();
+   // private HashMap<String, Reference> cellReferences = new HashMap<>();
 
     public Sheet(int size) {
         createStructure(size);
@@ -54,10 +55,21 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
+        Cell currentCell = getRef(name);
+        //currentCell.evaluate();
+        expr.addListener(currentCell);
+        Set<Cell> references = expr.references();
+        expr.notifyListeners(references, expr);
         Cell keyCell = table.get(name);
         keyCell.set(expr);
         table.put(name, keyCell);
     }
+
+ /*   private void notifyListeners(Set<Cell> references, Expression expr) {
+        for(Cell cell : references){
+            cell.expChanged(expr);
+        }
+    }*/
 
     public void clearTable(int size) {
         createStructure(size);

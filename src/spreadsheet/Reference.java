@@ -1,28 +1,21 @@
-package Value;
+package spreadsheet;
 
-import spreadsheet.Cell;
-import spreadsheet.Expression;
+import Value.MaybeValue;
 
 import java.util.Set;
 
-public class NoValue extends MaybeValue {
-    public static final NoValue INSTANCE = new NoValue();
 
-    public NoValue() {
-        super.setValue(false);
-    }
-
-    //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
-    @Override
-    public boolean hasValue() {
-        return false;
+public class Reference implements Expression {
+    Cell Ref;
+    Set<Cell> references;
+    public Reference(Cell ref){
+        this.Ref=ref;
     }
 
     @Override
     public MaybeValue evaluate() {
-        return NoValue.INSTANCE;
+        return Ref.evaluate();
     }
-
 
     @Override
     public Set<Cell> references() {
