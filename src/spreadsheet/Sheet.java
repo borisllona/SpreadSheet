@@ -56,10 +56,11 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = getRef(name);
+        Expression currentExp = currentCell.exp;
         //currentCell.evaluate();
         expr.addListener(currentCell);
         Set<Cell> references = expr.references();
-        expr.notifyListeners(references, expr);
+        expr.notifyListeners(references);
         Cell keyCell = table.get(name);
         keyCell.set(expr);
         table.put(name, keyCell);

@@ -23,6 +23,8 @@ public class SpreadSheetTest {
         put("a1",10);
         assertTrue(get("a1").hasValue());
         assertFalse(get("a3").hasValue());
+        SomeValue sv = (SomeValue)get("a1").evaluate();
+        assertEquals(sv.getValue(), new SomeValue(10).getValue());
     }
 
     @Test
@@ -36,7 +38,8 @@ public class SpreadSheetTest {
     public void recalculation_works() throws NotValidCellException {
         put("a1",42);
         put("a2",20);
-        assertEquals(new SomeValue(840), get("a3"));
+//        SomeValue sv = (SomeValue)get("a3");
+        assertEquals(new SomeValue(840).getValue(), /*sv.getValue()*/get("a3"));
     }
     @AfterEach
     public void clearSheet(){

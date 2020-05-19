@@ -28,9 +28,9 @@ public class Reference implements Expression {
     }
 
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
+    public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(expr);
+            cell.expChanged(this);
         }
     }
 }

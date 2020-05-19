@@ -16,7 +16,7 @@ public class Cell implements ChangeListener{
 
     public MaybeValue evaluate(){
 
-        return this.val;
+        return this.exp.evaluate();
     }
 
     public void set(Expression exp){
@@ -30,7 +30,9 @@ public class Cell implements ChangeListener{
         /*if(exp.references().size()>0){
             exp.notifyListeners(exp.references(), e);
         }*/
+
         this.exp = e;
         this.val = exp.evaluate();
+        //exp.notifyListeners(exp.references(), e);
     }
 }

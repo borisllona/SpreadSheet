@@ -39,9 +39,9 @@ public class Plus extends Operation {
     }
 
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
+    public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(expr);
+            cell.expChanged(this);
         }
     }
     public int operate(int i1, int i2){

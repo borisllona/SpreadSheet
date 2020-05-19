@@ -34,11 +34,13 @@ public class Mult extends Operation {
     @Override
     public void addListener(Cell cell) {
         super.references.add(cell);
+        exp1.addListener(cell);
+        exp2.addListener(cell);
     }
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
+    public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(expr);
+            cell.expChanged(this);
         }
     }
     public int operate(int i1, int i2){
