@@ -2,12 +2,13 @@ package spreadsheet;
 
 import Value.MaybeValue;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
 public class Reference implements Expression {
     Cell Ref;
-    Set<Cell> references;
+    Set<Cell> references = new HashSet<>();
     public Reference(Cell ref){
         this.Ref=ref;
     }
@@ -33,4 +34,5 @@ public class Reference implements Expression {
             cell.expChanged(this);
         }
     }
+
 }

@@ -31,7 +31,7 @@ public class Sheet {
         return Character.toString((char) asciiValue).concat(Integer.toString(j + 1));
     }
 
-    public Cell getRef(String name) throws NotValidCellException {
+    public Cell getCell(String name) throws NotValidCellException {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
@@ -44,35 +44,29 @@ public class Sheet {
         }
         Cell currentCell = table.get(name);
         return currentCell.evaluate();
-       /* if(currentCell.evaluate()==null){
-            return new NoValue();
-        }
-
-        return new SomeValue();*/
     }
 
     public void setExpression(String name, Expression expr) throws NotValidCellException {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
-        Cell currentCell = getRef(name);
-        Expression currentExp = currentCell.exp;
-        //currentCell.evaluate();
+        Cell currentCell = getCell(name);
+        notifyListeners(currentCell, expr);
         expr.addListener(currentCell);
-        Set<Cell> references = expr.references();
-        expr.notifyListeners(references);
-        Cell keyCell = table.get(name);
-        keyCell.set(expr);
-        table.put(name, keyCell);
+        currentCell.set(expr);
+        table.put(name, currentCell);
     }
 
- /*   private void notifyListeners(Set<Cell> references, Expression expr) {
+    private void notifyListeners(Cell currentCell, Expression expr) {
+        Expression currentExp = currentCell.exp;
+        Set<Cell> references = currentExp.references();
         for(Cell cell : references){
             cell.expChanged(expr);
         }
-    }*/
+    }
 
     public void clearTable(int size) {
         createStructure(size);
     }
+
 }

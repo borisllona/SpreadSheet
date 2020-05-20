@@ -15,24 +15,20 @@ public class Cell implements ChangeListener{
     }
 
     public MaybeValue evaluate(){
-
         return this.exp.evaluate();
     }
 
     public void set(Expression exp){
         this.exp = exp;
+        this.val = exp.evaluate();
+        //exp.expChanged(this, exp.references());
         //notifyReferences(exp);
     }
 
     @Override
     public void expChanged(Expression e) {
-        //notify current expression
-        /*if(exp.references().size()>0){
-            exp.notifyListeners(exp.references(), e);
-        }*/
 
-        this.exp = e;
-        this.val = exp.evaluate();
-        //exp.notifyListeners(exp.references(), e);
+        this.val = e.evaluate();
+        //Set<Cell> ref = e.references();
     }
 }
