@@ -40,10 +40,9 @@ public class Mult extends Operation {
     @Override
     public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(this);
+            cell.evaluate();
         }
     }
-
 
     public int operate(int i1, int i2){
         return i1 * i2;

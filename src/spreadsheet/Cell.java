@@ -27,8 +27,8 @@ public class Cell implements ChangeListener{
 
     @Override
     public void expChanged(Expression e) {
-
         this.val = e.evaluate();
-        //Set<Cell> ref = e.references();
+         e.notifyListeners(e.references());
+
     }
 }

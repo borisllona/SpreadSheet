@@ -9,7 +9,7 @@ public class Sheet {
     private static final int ASCI=97;
 
     private HashMap<String, Cell> table = new HashMap<>();
-   // private HashMap<String, Reference> cellReferences = new HashMap<>();
+    private HashMap<String, Reference> cellReferences = new HashMap<>();
 
     public Sheet(int size) {
         createStructure(size);
@@ -20,8 +20,10 @@ public class Sheet {
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 Cell cell = new Cell();
+                Reference ref = new Reference(cell);
                 String key = searchKey(i,j);
                 table.put(key, cell);
+                cellReferences.put(key, ref);
             }
         }
     }
@@ -38,6 +40,13 @@ public class Sheet {
         return table.get(name);
     }
 
+    public Reference getRef(String name) throws NotValidCellException {
+        if(!table.containsKey(name)){
+            throw new NotValidCellException();
+        }
+        return cellReferences.get(name);
+    }
+
     public MaybeValue getValue(String name) throws NotValidCellException {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
@@ -51,9 +60,9 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = getCell(name);
-        notifyListeners(currentCell, expr);
-        expr.addListener(currentCell);
         currentCell.set(expr);
+        expr.addListener(currentCell);
+        notifyListeners(currentCell, expr);
         table.put(name, currentCell);
     }
 

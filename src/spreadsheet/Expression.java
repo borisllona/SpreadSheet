@@ -11,6 +11,4 @@ public interface Expression {
 
     void notifyListeners(Set<Cell> references);
     //void expChanged(Expression e);
-
-
 }

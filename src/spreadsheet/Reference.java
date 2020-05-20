@@ -34,5 +34,9 @@ public class Reference implements Expression {
             cell.expChanged(this);
         }
     }
+    @Override
+    public boolean isOperation(){
+        return false;
+    }
 
 }
