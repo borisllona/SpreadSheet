@@ -1,6 +1,8 @@
 package spreadsheet;
 
 import Value.MaybeValue;
+import Value.NoValue;
+import Value.SomeValue;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -52,7 +54,11 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = table.get(name);
-        return currentCell.evaluate();
+        if(currentCell.val.hasValue()){
+            SomeValue v = (SomeValue)currentCell.val;
+            return new SomeValue(v.getValue());
+        }
+        return new NoValue();
     }
 
     public void setExpression(String name, Expression expr) throws NotValidCellException {
