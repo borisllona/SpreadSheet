@@ -60,10 +60,10 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = getCell(name);
-        Reference ref = getRef(name);
-        addReferencesToNewExpr(ref, expr);
+        Reference ref = getRef(name);           //referencia de la cel·la actual
+        addReferencesToNewExpr(ref, expr);      //afegim les celes afectades indirectament
         currentCell.set(expr);
-        expr.register(currentCell);
+        expr.register(currentCell);             //Cel·la actual listener de l'expresió
         notifyListeners(currentCell, expr);
         table.put(name, currentCell);
     }
@@ -79,9 +79,7 @@ public class Sheet {
         Expression currentExp = currentCell.exp;
         Set<Cell> references = currentExp.references();
         for(Cell cell : references){
-            cell.evaluate();
-           //cell.update(expr.evaluate());
-           // cell.update(expr);
+            cell.update(expr);              //Notifiquem a la cel·la el canvi d'expresió
         }
     }
 

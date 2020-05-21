@@ -82,10 +82,10 @@ public class SpreadSheet {
     }
 
     public static Expression plus(String ref1, String ref2) throws NotValidCellException {
-        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
-        Cell cell2 = SHEET.getCell(ref2);             //Cast de expression??
+        Reference reference1 = SHEET.getRef(ref1);
+        Reference reference2 = SHEET.getRef(ref2);
 
-        return new Plus(new Reference(cell), cell2.evaluate());
+        return new Plus(reference1, reference2);
     }
 
     //Mult combinations//

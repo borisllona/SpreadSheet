@@ -23,23 +23,14 @@ public class Cell implements Observer {
     public void set(Expression exp){
         this.exp = exp;
         this.val = exp.evaluate();
-        //exp.expChanged(this, exp.references());
-        //notifyReferences(exp);
-       // exp.notifyObservers(exp.references());
+
     }
 
     @Override
-    public void update(Expression exp) {
-        /*if(e.isOperation()){
-            Operation op = (Operation)e;
-            op.exp1.notifyListeners(op.exp1.references());
-            op.exp2.notifyListeners(op.exp2.references());
-        }
-        this.val = e.evaluate();
-        e.notifyListeners(e.references());*/
-        this.val = exp.evaluate();
-        exp.notifyObservers(exp.references());
+    public void update(Expression expr) {
 
+        this.val = this.exp.evaluate();
+        expr.notifyObservers(expr.references());
 
     }
 }

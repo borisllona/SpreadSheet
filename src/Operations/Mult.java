@@ -45,11 +45,8 @@ public class Mult extends Operation {
 
     @Override
     public void notifyObservers(Set<Cell> references) {
-      //  exp1.notifyListeners(exp1.references());
-      //  exp2.notifyListeners(exp2.references());
         for(Cell cell : references){
             cell.evaluate();
-            //cell.update(this.evaluate());
         }
     }
     @Override

@@ -11,6 +11,7 @@ public class SpreadSheetTest {
     @BeforeEach
     public void setUpSheet() throws NotValidCellException {
         put("a3", mult("a1", "a2"));
+        put("b3", plus("b1", "b2"));
     }
 
     @Test
@@ -61,6 +62,14 @@ public class SpreadSheetTest {
         put("a2",20);
         SomeValue sv = (SomeValue)get("a3");
         assertEquals(new SomeValue(840).getValue(), sv.getValue());
+    }
+
+    @Test
+    public void recalculation_works2() throws NotValidCellException {
+        put("b1",42);
+        put("b2",20);
+        SomeValue sv = (SomeValue)get("b3");
+        assertEquals(new SomeValue(62).getValue(), sv.getValue());
     }
 
     @AfterEach

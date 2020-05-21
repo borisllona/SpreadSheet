@@ -42,7 +42,6 @@ public class NoValue extends MaybeValue {
     public void notifyObservers(Set<Cell> references) {
         for(Cell cell : references) {
             cell.evaluate();
-            //cell.update(this.evaluate());
         }
     }
     @Override

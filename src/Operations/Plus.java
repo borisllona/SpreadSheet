@@ -10,8 +10,6 @@ import java.util.Set;
 
 public class Plus extends Operation {
 
-    private Set<Cell> references;
-
     public Plus(Expression e1, Expression e2) {
         super(e1, e2);
     }
@@ -35,7 +33,9 @@ public class Plus extends Operation {
 
     @Override
     public void register(Cell cell) {
-        references.add(cell);
+        super.references.add(cell);
+        exp1.register(cell);
+        exp2.register(cell);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Plus extends Operation {
     public void notifyObservers(Set<Cell> references) {
         for(Cell cell : references){
            // cell.evaluate();
-            cell.update(this.evaluate());
+            cell.evaluate();
         }
     }
     @Override
