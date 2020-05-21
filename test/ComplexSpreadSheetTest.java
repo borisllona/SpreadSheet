@@ -21,7 +21,8 @@ public class ComplexSpreadSheetTest {
 
     @Test
     public void chained_expressions() throws NotValidCellException {
-        assertEquals(new SomeValue(1400), get("c3"));
+        SomeValue sv = (SomeValue)get("c3");
+        assertEquals(new SomeValue(1400).getValue(), sv.getValue());
     }
     @Test
     public void chained_propagations() throws NotValidCellException {
