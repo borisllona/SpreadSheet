@@ -51,8 +51,7 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
-        Cell currentCell = table.get(name);
-        return currentCell.evaluate();
+        return table.get(name).val;
     }
 
     public void setExpression(String name, Expression expr) throws NotValidCellException {
@@ -63,8 +62,8 @@ public class Sheet {
         Reference ref = getRef(name);
         addReferencesToNewExpr(ref, expr);
         currentCell.set(expr);
-        expr.register(currentCell);
-        notifyListeners(currentCell, expr);
+/*        expr.register(currentCell);
+        notifyListeners(currentCell, expr);*/
         table.put(name, currentCell);
     }
 
