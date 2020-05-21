@@ -36,7 +36,8 @@ public class NoValue extends MaybeValue {
     @Override
     public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.evaluate();
-        }
+            cell.evaluate();        }
     }
+    @Override
+    public boolean isOperation(){ return false; }
 }

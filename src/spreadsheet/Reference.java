@@ -31,8 +31,7 @@ public class Reference implements Expression {
     @Override
     public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(this);
-        }
+            cell.evaluate();        }
     }
     @Override
     public boolean isOperation(){

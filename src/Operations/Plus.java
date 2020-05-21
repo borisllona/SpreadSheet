@@ -44,6 +44,8 @@ public class Plus extends Operation {
             cell.evaluate();
         }
     }
+    @Override
+    public boolean isOperation(){ return true; }
 
     public int operate(int i1, int i2){
         return i1 + i2;

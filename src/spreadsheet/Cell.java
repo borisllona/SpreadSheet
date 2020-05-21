@@ -1,5 +1,6 @@
 package spreadsheet;
 
+import Operations.Operation;
 import Value.MaybeValue;
 import Value.NoValue;
 
@@ -10,8 +11,9 @@ public class Cell implements ChangeListener{
 
     public Cell(){
         val = new NoValue();
-        val.addListener(this);
+        //val.addListener(this);
         exp = val;
+        //exp.addListener(this);
     }
 
     public MaybeValue evaluate(){
@@ -27,8 +29,13 @@ public class Cell implements ChangeListener{
 
     @Override
     public void expChanged(Expression e) {
+        if(e.isOperation()){
+            Operation op = (Operation)e;
+            op.exp1.notifyListeners(op.exp1.references());
+            op.exp2.notifyListeners(op.exp2.references());
+        }
         this.val = e.evaluate();
-         e.notifyListeners(e.references());
+        e.notifyListeners(e.references());
 
     }
 }

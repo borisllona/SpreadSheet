@@ -10,5 +10,7 @@ public interface Expression {
     void addListener(Cell cell);
 
     void notifyListeners(Set<Cell> references);
+
+    boolean isOperation();
     //void expChanged(Expression e);
 }

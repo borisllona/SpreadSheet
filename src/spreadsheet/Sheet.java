@@ -1,5 +1,6 @@
 package spreadsheet;
 
+import Operations.Operation;
 import Value.MaybeValue;
 
 import java.util.HashMap;
@@ -62,6 +63,13 @@ public class Sheet {
         Cell currentCell = getCell(name);
         currentCell.set(expr);
         expr.addListener(currentCell);
+        if(expr.isOperation()){
+            Operation o = (Operation)expr;
+            o.exp1.addListener(currentCell);
+            o.exp2.addListener(currentCell);
+            o.exp1.notifyListeners(o.exp1.references());
+            o.exp2.notifyListeners(o.exp2.references());
+        }
         notifyListeners(currentCell, expr);
         table.put(name, currentCell);
     }

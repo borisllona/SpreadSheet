@@ -43,4 +43,9 @@ public class SomeValue extends MaybeValue {
         }
     }
 
+    @Override
+    public boolean isOperation() {
+        return false;
+    }
+
 }

@@ -39,11 +39,12 @@ public class Mult extends Operation {
     }
     @Override
     public void notifyListeners(Set<Cell> references) {
-        for(Cell cell : references){
-            cell.evaluate();
-        }
-    }
 
+        for(Cell cell : references){
+            cell.evaluate();        }
+    }
+    @Override
+    public boolean isOperation(){ return true; }
     public int operate(int i1, int i2){
         return i1 * i2;
     }
