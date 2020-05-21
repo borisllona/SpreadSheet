@@ -15,29 +15,16 @@ public class SpreadSheet {
     }
 
     public static void put(String name, Expression expr) throws NotValidCellException {
-
-
-        //reference name, notifyAll references(expr)
-        //EVALUATE de la cela name
-        //Tenim el maybeValue(NV o SV) de l'evaluate
-        //maybeValue.preferences()
-        //notify preferences amb la nova expresió
-        //expr.addListener(SHEET.getRef(name));   //afegim a la nova expresio el listener name
-        SHEET.setExpression(name, expr);        //definim l'expresió nova a la cela
-
+        SHEET.setExpression(name, expr);
     }
 
     public static void put(String name, int value) throws NotValidCellException {
         SHEET.setExpression(name, new SomeValue(value));
-        //Expression  = value -> SomeValue a la cel·la name. name notifica als seus listeners
     }
 
     public static void put(String name, String refName) throws NotValidCellException {
-        //Reference r = new Reference(SHEET.getCell(refName)); //TODO: referencia ja creada i no nova??
         Reference r = SHEET.getRef(refName);
         SHEET.setExpression(name, r);
-        //Expression = referencia -> Cel·la: name escolta a la referència, afegir a la taula de refname
-        //la cela name.
     }
 
     public static void clear(){
@@ -159,8 +146,8 @@ public class SpreadSheet {
 
     public static Expression mult(String ref1, String ref2) throws NotValidCellException {
 
-        Reference reference1 = SHEET.getRef(ref1);          //Cast de expression??
-        Reference reference2 = SHEET.getRef(ref2);               //Cast de expression??
+        Reference reference1 = SHEET.getRef(ref1);
+        Reference reference2 = SHEET.getRef(ref2);
 
         return new Mult(reference1, reference2);
     }

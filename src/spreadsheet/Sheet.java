@@ -1,6 +1,5 @@
 package spreadsheet;
 
-import Operations.Operation;
 import Value.MaybeValue;
 
 import java.util.HashMap;
@@ -61,24 +60,28 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = getCell(name);
+        Reference ref = getRef(name);
+        addReferencesToNewExpr(ref, expr);
         currentCell.set(expr);
-        expr.addListener(currentCell);
-        if(expr.isOperation()){
-            Operation o = (Operation)expr;
-            o.exp1.addListener(currentCell);
-            o.exp2.addListener(currentCell);
-            o.exp1.notifyListeners(o.exp1.references());
-            o.exp2.notifyListeners(o.exp2.references());
-        }
+        expr.register(currentCell);
         notifyListeners(currentCell, expr);
         table.put(name, currentCell);
+    }
+
+    private void addReferencesToNewExpr(Reference ref, Expression expr) {
+        Set<Cell> refs = ref.references();
+        for(Cell cell: refs){
+            expr.register(cell);
+        }
     }
 
     private void notifyListeners(Cell currentCell, Expression expr) {
         Expression currentExp = currentCell.exp;
         Set<Cell> references = currentExp.references();
         for(Cell cell : references){
-            cell.expChanged(expr);
+            cell.evaluate();
+           //cell.update(expr.evaluate());
+           // cell.update(expr);
         }
     }
 
