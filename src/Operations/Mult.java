@@ -32,15 +32,28 @@ public class Mult extends Operation {
     }
 
     @Override
-    public void addListener(Cell cell) {
+    public void register(Cell cell) {
         super.references.add(cell);
+        exp1.register(cell);
+        exp2.register(cell);
     }
+
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
+    public void unregister(Cell cell) {
+
+    }
+
+    @Override
+    public void notifyObservers(Set<Cell> references) {
+      //  exp1.notifyListeners(exp1.references());
+      //  exp2.notifyListeners(exp2.references());
         for(Cell cell : references){
-            cell.expChanged(expr);
+            cell.evaluate();
+            //cell.update(this.evaluate());
         }
     }
+    @Override
+    public boolean isOperation(){ return true; }
     public int operate(int i1, int i2){
         return i1 * i2;
     }

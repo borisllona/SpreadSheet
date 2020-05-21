@@ -34,16 +34,25 @@ public class Plus extends Operation {
     }
 
     @Override
-    public void addListener(Cell cell) {
+    public void register(Cell cell) {
         references.add(cell);
     }
 
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
+    public void unregister(Cell cell) {
+
+    }
+
+    @Override
+    public void notifyObservers(Set<Cell> references) {
         for(Cell cell : references){
-            cell.expChanged(expr);
+           // cell.evaluate();
+            cell.update(this.evaluate());
         }
     }
+    @Override
+    public boolean isOperation(){ return true; }
+
     public int operate(int i1, int i2){
         return i1 + i2;
     }

@@ -15,28 +15,16 @@ public class SpreadSheet {
     }
 
     public static void put(String name, Expression expr) throws NotValidCellException {
-
-
-        //reference name, notifyAll references(expr)
-        //EVALUATE de la cela name
-        //Tenim el maybeValue(NV o SV) de l'evaluate
-        //maybeValue.preferences()
-        //notify preferences amb la nova expresió
-        //expr.addListener(SHEET.getRef(name));   //afegim a la nova expresio el listener name
-        SHEET.setExpression(name, expr);        //definim l'expresió nova a la cela
-
+        SHEET.setExpression(name, expr);
     }
 
     public static void put(String name, int value) throws NotValidCellException {
         SHEET.setExpression(name, new SomeValue(value));
-        //Expression  = value -> SomeValue a la cel·la name. name notifica als seus listeners
     }
 
     public static void put(String name, String refName) throws NotValidCellException {
-        Reference r = new Reference(SHEET.getRef(refName)); //TODO: referencia ja creada i no nova??
+        Reference r = SHEET.getRef(refName);
         SHEET.setExpression(name, r);
-        //Expression = referencia -> Cel·la: name escolta a la referència, afegir a la taula de refname
-        //la cela name.
     }
 
     public static void clear(){
@@ -55,9 +43,9 @@ public class SpreadSheet {
     }
 
     public static Expression plus(Expression expr1, String ref2) throws NotValidCellException {
-        Cell cell = SHEET.getRef(ref2);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref2);             //Cast de expression??
 
-        return new Plus(expr1, cell.evaluate());
+        return new Plus(expr1, new Reference(cell));
     }
 
     public static Expression plus(int value1, Expression expr2){
@@ -75,29 +63,29 @@ public class SpreadSheet {
 
     public static Expression plus(int value1, String ref2) throws NotValidCellException {
         MaybeValue v1 = new SomeValue(value1);
-        Cell cell = SHEET.getRef(ref2);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref2);             //Cast de expression??
 
-        return new Plus(v1, cell.evaluate());
+        return new Plus(v1, new Reference(cell));
     }
 
     public static Expression plus(String ref1, Expression expr2) throws NotValidCellException {
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
 
-        return new Plus(cell.evaluate(), expr2);
+        return new Plus(new Reference(cell), expr2);
     }
 
     public static Expression plus(String ref1, int value2) throws NotValidCellException {
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
         MaybeValue v1 = new SomeValue(value2);
 
-        return new Plus(cell.evaluate(), v1);
+        return new Plus(new Reference(cell), v1);
     }
 
     public static Expression plus(String ref1, String ref2) throws NotValidCellException {
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
-        Cell cell2 = SHEET.getRef(ref2);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
+        Cell cell2 = SHEET.getCell(ref2);             //Cast de expression??
 
-        return new Plus(cell.evaluate(), cell2.evaluate());
+        return new Plus(new Reference(cell), cell2.evaluate());
     }
 
     //Mult combinations//
@@ -113,9 +101,9 @@ public class SpreadSheet {
 
     public static Expression mult(Expression expr1, String ref2) throws NotValidCellException {
 
-        Cell cell = SHEET.getRef(ref2);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref2);             //Cast de expression??
 
-        return new Mult(expr1, cell.evaluate());
+        return new Mult(expr1, new Reference(cell));
     }
 
     public static Expression mult(int value1, Expression expr2){
@@ -136,31 +124,31 @@ public class SpreadSheet {
     public static Expression mult(int value1, String ref2) throws NotValidCellException {
 
         MaybeValue v1 = new SomeValue(value1);
-        Cell cell = SHEET.getRef(ref2);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref2);             //Cast de expression??
 
-        return new Mult(v1, cell.evaluate());
+        return new Mult(v1, new Reference(cell));
     }
 
     public static Expression mult(String ref1, Expression expr2) throws NotValidCellException {
 
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
+        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
 
-        return new Plus(cell.evaluate(), expr2);
+        return new Plus(new Reference(cell), expr2);
     }
 
     public static Expression mult(String ref1, int value2) throws NotValidCellException {
 
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
-        MaybeValue v1 = new SomeValue(value2);
+        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
+        MaybeValue v2 = new SomeValue(value2);
 
-        return new Mult(cell.evaluate(), v1);
+        return new Mult(new Reference(cell), v2);
     }
 
     public static Expression mult(String ref1, String ref2) throws NotValidCellException {
 
-        Cell cell = SHEET.getRef(ref1);             //Cast de expression??
-        Cell cell2 = SHEET.getRef(ref2);             //Cast de expression??
+        Reference reference1 = SHEET.getRef(ref1);
+        Reference reference2 = SHEET.getRef(ref2);
 
-        return new Mult(cell.evaluate(), cell2.evaluate());
+        return new Mult(reference1, reference2);
     }
 }

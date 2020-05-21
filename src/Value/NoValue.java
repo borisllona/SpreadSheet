@@ -1,7 +1,6 @@
 package Value;
 
 import spreadsheet.Cell;
-import spreadsheet.Expression;
 
 import java.util.Set;
 
@@ -30,14 +29,22 @@ public class NoValue extends MaybeValue {
     }
 
     @Override
-    public void addListener(Cell cell) {
+    public void register(Cell cell) {
         references.add(cell);
     }
 
     @Override
-    public void notifyListeners(Set<Cell> references, Expression expr) {
-        for(Cell cell : references){
-            cell.expChanged(expr);
+    public void unregister(Cell cell) {
+
+    }
+
+    @Override
+    public void notifyObservers(Set<Cell> references) {
+        for(Cell cell : references) {
+            cell.evaluate();
+            //cell.update(this.evaluate());
         }
     }
+    @Override
+    public boolean isOperation(){ return false; }
 }

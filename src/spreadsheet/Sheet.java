@@ -9,7 +9,7 @@ public class Sheet {
     private static final int ASCI=97;
 
     private HashMap<String, Cell> table = new HashMap<>();
-   // private HashMap<String, Reference> cellReferences = new HashMap<>();
+    private HashMap<String, Reference> cellReferences = new HashMap<>();
 
     public Sheet(int size) {
         createStructure(size);
@@ -20,8 +20,10 @@ public class Sheet {
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 Cell cell = new Cell();
+                Reference ref = new Reference(cell);
                 String key = searchKey(i,j);
                 table.put(key, cell);
+                cellReferences.put(key, ref);
             }
         }
     }
@@ -31,11 +33,18 @@ public class Sheet {
         return Character.toString((char) asciiValue).concat(Integer.toString(j + 1));
     }
 
-    public Cell getRef(String name) throws NotValidCellException {
+    public Cell getCell(String name) throws NotValidCellException {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
         return table.get(name);
+    }
+
+    public Reference getRef(String name) throws NotValidCellException {
+        if(!table.containsKey(name)){
+            throw new NotValidCellException();
+        }
+        return cellReferences.get(name);
     }
 
     public MaybeValue getValue(String name) throws NotValidCellException {
@@ -44,34 +53,40 @@ public class Sheet {
         }
         Cell currentCell = table.get(name);
         return currentCell.evaluate();
-       /* if(currentCell.evaluate()==null){
-            return new NoValue();
-        }
-
-        return new SomeValue();*/
     }
 
     public void setExpression(String name, Expression expr) throws NotValidCellException {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
-        Cell currentCell = getRef(name);
-        //currentCell.evaluate();
-        expr.addListener(currentCell);
-        Set<Cell> references = expr.references();
-        expr.notifyListeners(references, expr);
-        Cell keyCell = table.get(name);
-        keyCell.set(expr);
-        table.put(name, keyCell);
+        Cell currentCell = getCell(name);
+        Reference ref = getRef(name);
+        addReferencesToNewExpr(ref, expr);
+        currentCell.set(expr);
+        expr.register(currentCell);
+        notifyListeners(currentCell, expr);
+        table.put(name, currentCell);
     }
 
- /*   private void notifyListeners(Set<Cell> references, Expression expr) {
-        for(Cell cell : references){
-            cell.expChanged(expr);
+    private void addReferencesToNewExpr(Reference ref, Expression expr) {
+        Set<Cell> refs = ref.references();
+        for(Cell cell: refs){
+            expr.register(cell);
         }
-    }*/
+    }
+
+    private void notifyListeners(Cell currentCell, Expression expr) {
+        Expression currentExp = currentCell.exp;
+        Set<Cell> references = currentExp.references();
+        for(Cell cell : references){
+            cell.evaluate();
+           //cell.update(expr.evaluate());
+           // cell.update(expr);
+        }
+    }
 
     public void clearTable(int size) {
         createStructure(size);
     }
+
 }

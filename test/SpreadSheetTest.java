@@ -23,6 +23,8 @@ public class SpreadSheetTest {
         put("a1",10);
         assertTrue(get("a1").hasValue());
         assertFalse(get("a3").hasValue());
+        SomeValue sv = (SomeValue)get("a1").evaluate();
+        assertEquals(sv.getValue(), new SomeValue(10).getValue());
     }
 
     @Test
@@ -31,13 +33,36 @@ public class SpreadSheetTest {
                 () -> put("a2","Test"));
     }
 
+    @Test
+    public void recalculation_ref_works() throws NotValidCellException {
+        put("a3", 23);
+        put("a1","a3");
+        SomeValue sv = (SomeValue)get("a1");
+        assertEquals(new SomeValue(23).getValue(), sv.getValue());
+        put("a3", 56);
+        sv = (SomeValue)get("a1");
+        assertEquals(new SomeValue(56).getValue(), sv.getValue());
+    }
+
+    @Test
+    public void recalculation_ref_indirect_works() throws NotValidCellException {
+        put("a4", "a2");
+        put("a2","a5");
+        put("a5", 56);
+        SomeValue sv = (SomeValue)get("a2");
+        assertEquals(new SomeValue(56).getValue(), sv.getValue());
+        SomeValue sv2 = (SomeValue)get("a4");
+        assertEquals(new SomeValue(56).getValue(), sv2.getValue());
+    }
 
     @Test
     public void recalculation_works() throws NotValidCellException {
         put("a1",42);
         put("a2",20);
-        assertEquals(new SomeValue(840), get("a3"));
+        SomeValue sv = (SomeValue)get("a3");
+        assertEquals(new SomeValue(840).getValue(), sv.getValue());
     }
+
     @AfterEach
     public void clearSheet(){
         clear();
