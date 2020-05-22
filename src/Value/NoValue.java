@@ -36,6 +36,10 @@ public class NoValue extends MaybeValue {
         // references.add(cell);
     }
 
+    @Override
+    public void cleanListener(Cell cell) {
+    }
+
     /*
     @Override
     public void notifyListeners(Set<Cell> references) {

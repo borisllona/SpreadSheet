@@ -8,6 +8,7 @@ public interface Expression {
     MaybeValue evaluate();
     // Set<Cell> references();
     void addListener(Cell cell);
+    void cleanListener(Cell cell);
 
     // void notifyListeners(Set<Cell> references);
     // void expChanged(Expression e);

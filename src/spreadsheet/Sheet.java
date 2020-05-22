@@ -62,9 +62,13 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
-        Cell currentCell = getCell(name);
-        currentCell.set(expr);
 
+        Cell currentCell = getCell(name);
+
+        // Elimina referencies de l'expressió anterior
+        currentCell.exp.cleanListener(currentCell);
+
+        currentCell.set(expr);
         expr.addListener(currentCell);
 
         notifyListeners(currentCell, expr);
@@ -73,9 +77,14 @@ public class Sheet {
         table.put(name, currentCell);
     }
 
+    private void cleanListeners(Cell currentCell) {
+        var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
+
+
+    }
     private void notifyListeners(Cell currentCell, Expression expr) {
 
-        Expression currentExp = currentCell.exp;
+        // Expression currentExp = currentCell.exp;
         var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
         /*
         for(Cell cell : references){

@@ -5,10 +5,6 @@ import Value.NoValue;
 import Value.SomeValue;
 import spreadsheet.Cell;
 import spreadsheet.Expression;
-import spreadsheet.Sheet;
-import spreadsheet.SpreadSheet;
-
-import java.util.Set;
 
 public class Mult extends Operation {
     public Mult(Expression e1, Expression e2) {
@@ -28,6 +24,12 @@ public class Mult extends Operation {
         return new NoValue();
     }
 
+    @Override
+    public void cleanListener(Cell cell) {
+        exp1.cleanListener(cell);
+        exp2.cleanListener(cell);
+    }
+
     /*
     @Override
     public Set<Cell> references() {
@@ -41,9 +43,6 @@ public class Mult extends Operation {
         //
         // var e1 = SpreadSheet.GetReference("a1");
         exp1.addListener(cell);
-        // e1.addListener(cell);
-        // var e2 = SpreadSheet.GetReference("a2");
-        // e2.addListener(cell);
         exp2.addListener(cell);
     }
     /*

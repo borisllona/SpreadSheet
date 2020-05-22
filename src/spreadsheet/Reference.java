@@ -29,6 +29,12 @@ public class Reference implements Expression {
     public void addListener(Cell cell) {
         references.add(cell);
     }
+
+    @Override
+    public void cleanListener(Cell cell) {
+        references.remove(cell);
+    }
+
 /*
     @Override
     public void notifyListeners(Set<Cell> references) {

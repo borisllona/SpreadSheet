@@ -40,6 +40,11 @@ public class Plus extends Operation {
         exp1.addListener(cell);
         exp2.addListener(cell);
     }
+
+    @Override
+    public void cleanListener(Cell cell) {
+    }
+
 /*
     @Override
     public void notifyListeners(Set<Cell> references) {
