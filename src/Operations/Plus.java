@@ -29,12 +29,12 @@ public class Plus extends Operation {
         return new NoValue();
     }
 
-    /*
+
     @Override
     public Set<Cell> references() {
         return references;
     }
-*/
+
     @Override
     public void registerListener(Cell cell) {
         exp1.registerListener(cell);

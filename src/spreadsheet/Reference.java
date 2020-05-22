@@ -20,12 +20,12 @@ public class Reference implements Expression {
         return Ref.evaluate();
     }
 
-    /*
+
     @Override
     public Set<Cell> references() {
         return this.references;
     }
-*/
+
     @Override
     public void registerListener(Cell cell) {
         references.add(cell);
@@ -36,13 +36,5 @@ public class Reference implements Expression {
         references.remove(cell);
     }
 
-/*
-    @Override
-    public void notifyListeners(Set<Cell> references) {
-        for(Cell cell : references){
-            cell.expChanged(this);
-        }
-    }
-*/
 
 }

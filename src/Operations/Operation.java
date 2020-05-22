@@ -14,7 +14,4 @@ public abstract class Operation implements Expression {
         this.exp1=e1;
         this.exp2=e2;
     }
-
-    //public int operate(int i1, int i2){ return 0; }
-
 }

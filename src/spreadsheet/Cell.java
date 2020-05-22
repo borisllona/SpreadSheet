@@ -7,11 +7,9 @@ public class Cell implements observer{
     MaybeValue val;
     Expression exp;
     String name;
-   // Set<Cell> cellReferences;
 
     public Cell(){
         val = new NoValue();
-        // val.addListener(this);
         exp = val;
     }
 
@@ -22,8 +20,6 @@ public class Cell implements observer{
     public void set(Expression exp){
         this.exp = exp;
         this.val = exp.evaluate();
-        //exp.expChanged(this, exp.references());
-        //notifyReferences(exp);
     }
 
      @Override

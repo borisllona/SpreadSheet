@@ -6,10 +6,8 @@ import java.util.Set;
 
 public interface Expression {
     MaybeValue evaluate();
-    // Set<Cell> references();
+    Set<Cell> references();
     void registerListener(Cell cell);
     void unregisterListener(Cell cell);
 
-    // void notifyListeners(Set<Cell> references);
-    // void expChanged(Expression e);
 }

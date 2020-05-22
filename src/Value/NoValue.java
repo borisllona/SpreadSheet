@@ -12,7 +12,6 @@ public class NoValue extends MaybeValue {
         super.setValue(false);
     }
 
-    //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
     @Override
     public boolean hasValue() {
         return false;
@@ -23,29 +22,20 @@ public class NoValue extends MaybeValue {
         return NoValue.INSTANCE;
     }
 
-/*
+
     @Override
     public Set<Cell> references() {
-        return this.references;
+        return references;
     }
-*/
+
 
     @Override
     public void registerListener(Cell cell) {
-        // ??????????????
-        // references.add(cell);
+        references.add(cell);
     }
 
     @Override
     public void unregisterListener(Cell cell) {
+        references.remove(cell);
     }
-
-    /*
-    @Override
-    public void notifyListeners(Set<Cell> references) {
-        for(Cell cell : references){
-            cell.evaluate();
-        }
-    }
-     */
 }

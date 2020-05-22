@@ -77,16 +77,13 @@ public class Sheet {
         table.put(name, currentCell);
     }
 
-    private void notifyListeners(Cell currentCell, Expression expr) {
+    private void notifyListeners(Cell currentCell, Expression expr) throws NotValidCellException {
         //ToDo: refactor eliminar for each, si fem una cela una referencia
         // Expression currentExp = currentCell.exp;
-        var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
-        /*
-        for(Cell cell : references){
-            var e = cell.exp;
-            cell.expChanged(e);
-        }
-         */
+        //var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
+        Reference ref = getRef(currentCell.name);
+        Set<Cell> references = ref.references();
+
         String name = "";
         while (! references.isEmpty())
         {
@@ -95,7 +92,8 @@ public class Sheet {
                 cell.update(e);
                 name = cell.name;
             }
-            references = SpreadSheet.GetReference(name).references;
+            ref = getRef(name);
+            references = ref.references(); //SpreadSheet.GetReference(name).references;
         }
 
     }
