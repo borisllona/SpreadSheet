@@ -3,7 +3,7 @@ package spreadsheet;
 import Value.MaybeValue;
 import Value.NoValue;
 
-public class Cell {// implements ChangeListener{
+public class Cell implements observer{
     MaybeValue val;
     Expression exp;
     String name;
@@ -26,10 +26,8 @@ public class Cell {// implements ChangeListener{
         //notifyReferences(exp);
     }
 
-    // @Override
-    public void expChanged(Expression e) {
+     @Override
+    public void update(Expression e) {
         this.val = e.evaluate();
-         // e.notifyListeners(e.references());
-
     }
 }

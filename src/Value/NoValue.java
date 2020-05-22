@@ -31,13 +31,13 @@ public class NoValue extends MaybeValue {
 */
 
     @Override
-    public void addListener(Cell cell) {
+    public void registerListener(Cell cell) {
         // ??????????????
         // references.add(cell);
     }
 
     @Override
-    public void cleanListener(Cell cell) {
+    public void unregisterListener(Cell cell) {
     }
 
     /*

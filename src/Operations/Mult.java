@@ -25,9 +25,9 @@ public class Mult extends Operation {
     }
 
     @Override
-    public void cleanListener(Cell cell) {
-        exp1.cleanListener(cell);
-        exp2.cleanListener(cell);
+    public void unregisterListener(Cell cell) {
+        exp1.unregisterListener(cell);
+        exp2.unregisterListener(cell);
     }
 
     /*
@@ -37,13 +37,10 @@ public class Mult extends Operation {
     }
 */
     @Override
-    public void addListener(Cell cell) {
-        // No veig perque s'ha de tenir una referencia sobre si matreix???
-        // super.references.add(cell);
-        //
-        // var e1 = SpreadSheet.GetReference("a1");
-        exp1.addListener(cell);
-        exp2.addListener(cell);
+    public void registerListener(Cell cell) {
+
+        exp1.registerListener(cell);
+        exp2.registerListener(cell);
     }
     /*
     @Override

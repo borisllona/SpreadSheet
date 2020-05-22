@@ -66,10 +66,10 @@ public class Sheet {
         Cell currentCell = getCell(name);
 
         // Elimina referencies de l'expressió anterior
-        currentCell.exp.cleanListener(currentCell);
+        currentCell.exp.unregisterListener(currentCell);
 
         currentCell.set(expr);
-        expr.addListener(currentCell);
+        expr.registerListener(currentCell);
 
         notifyListeners(currentCell, expr);
 
@@ -92,7 +92,7 @@ public class Sheet {
         {
             for(Cell cell : references){
                 var e = cell.exp;
-                cell.expChanged(e);
+                cell.update(e);
                 name = cell.name;
             }
             references = SpreadSheet.GetReference(name).references;

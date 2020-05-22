@@ -36,20 +36,16 @@ public class Plus extends Operation {
     }
 */
     @Override
-    public void addListener(Cell cell) {
-        exp1.addListener(cell);
-        exp2.addListener(cell);
+    public void registerListener(Cell cell) {
+        exp1.registerListener(cell);
+        exp2.registerListener(cell);
     }
 
     @Override
-    public void cleanListener(Cell cell) {
+    public void unregisterListener(Cell cell) {
+        exp1.unregisterListener(cell);
+        exp2.unregisterListener(cell);
     }
-
-/*
-    @Override
-    public void notifyListeners(Set<Cell> references) {
-    }
-*/
 
     public int operate(int i1, int i2){
         return i1 + i2;
