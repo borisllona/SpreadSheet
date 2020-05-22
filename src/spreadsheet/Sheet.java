@@ -77,11 +77,6 @@ public class Sheet {
         table.put(name, currentCell);
     }
 
-    private void cleanListeners(Cell currentCell) {
-        var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
-
-
-    }
     private void notifyListeners(Cell currentCell, Expression expr) {
 
         // Expression currentExp = currentCell.exp;
