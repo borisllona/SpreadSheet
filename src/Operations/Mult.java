@@ -5,6 +5,8 @@ import Value.NoValue;
 import Value.SomeValue;
 import spreadsheet.Cell;
 import spreadsheet.Expression;
+import spreadsheet.Sheet;
+import spreadsheet.SpreadSheet;
 
 import java.util.Set;
 
@@ -26,34 +28,32 @@ public class Mult extends Operation {
         return new NoValue();
     }
 
+    /*
     @Override
     public Set<Cell> references() {
         return references;
     }
-
+*/
     @Override
-    public void register(Cell cell) {
-        super.references.add(cell);
-        exp1.register(cell);
-        exp2.register(cell);
+    public void addListener(Cell cell) {
+        // No veig perque s'ha de tenir una referencia sobre si matreix???
+        // super.references.add(cell);
+        //
+        // var e1 = SpreadSheet.GetReference("a1");
+        exp1.addListener(cell);
+        // e1.addListener(cell);
+        // var e2 = SpreadSheet.GetReference("a2");
+        // e2.addListener(cell);
+        exp2.addListener(cell);
     }
-
+    /*
     @Override
-    public void unregister(Cell cell) {
-
-    }
-
-    @Override
-    public void notifyObservers(Set<Cell> references) {
-      //  exp1.notifyListeners(exp1.references());
-      //  exp2.notifyListeners(exp2.references());
+    public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
             cell.evaluate();
-            //cell.update(this.evaluate());
         }
     }
-    @Override
-    public boolean isOperation(){ return true; }
+    */
     public int operate(int i1, int i2){
         return i1 * i2;
     }

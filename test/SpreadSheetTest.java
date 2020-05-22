@@ -2,6 +2,7 @@ import Value.SomeValue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import spreadsheet.Cell;
 import spreadsheet.NotValidCellException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,15 @@ public class SpreadSheetTest {
     @Test
     public void cell_has_no_value_if_depends_on_empty_cells() throws NotValidCellException {
         assertFalse(get("a3").hasValue());
+    }
+
+    @Test
+    public void cell_no_value_with_just_one_assignment_1() throws NotValidCellException {
+        put("a1",10);
+        put("a2",2);
+
+        SomeValue sv = (SomeValue) get("a3");
+        assertEquals(new SomeValue(20).getValue(), sv.getValue());
     }
 
     @Test

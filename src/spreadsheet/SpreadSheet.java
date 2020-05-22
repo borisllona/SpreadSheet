@@ -15,16 +15,29 @@ public class SpreadSheet {
     }
 
     public static void put(String name, Expression expr) throws NotValidCellException {
-        SHEET.setExpression(name, expr);
+
+
+        //reference name, notifyAll references(expr)
+        //EVALUATE de la cela name
+        //Tenim el maybeValue(NV o SV) de l'evaluate
+        //maybeValue.preferences()
+        //notify preferences amb la nova expresió
+        //expr.addListener(SHEET.getRef(name));   //afegim a la nova expresio el listener name
+        SHEET.setExpression(name, expr);        //definim l'expresió nova a la cela
+
     }
 
     public static void put(String name, int value) throws NotValidCellException {
         SHEET.setExpression(name, new SomeValue(value));
+        //Expression  = value -> SomeValue a la cel·la name. name notifica als seus listeners
     }
 
     public static void put(String name, String refName) throws NotValidCellException {
+        //Reference r = new Reference(SHEET.getCell(refName)); //TODO: referencia ja creada i no nova??
         Reference r = SHEET.getRef(refName);
         SHEET.setExpression(name, r);
+        //Expression = referencia -> Cel·la: name escolta a la referència, afegir a la taula de refname
+        //la cela name.
     }
 
     public static void clear(){
@@ -82,10 +95,10 @@ public class SpreadSheet {
     }
 
     public static Expression plus(String ref1, String ref2) throws NotValidCellException {
-        Cell cell = SHEET.getCell(ref1);             //Cast de expression??
-        Cell cell2 = SHEET.getCell(ref2);             //Cast de expression??
+        Reference reference1 = SHEET.getRef(ref1);          //Cast de expression??
+        Reference reference2 = SHEET.getRef(ref2);               //Cast de expression??
 
-        return new Plus(new Reference(cell), cell2.evaluate());
+        return new Plus(reference1, reference2);
     }
 
     //Mult combinations//
@@ -146,9 +159,18 @@ public class SpreadSheet {
 
     public static Expression mult(String ref1, String ref2) throws NotValidCellException {
 
-        Reference reference1 = SHEET.getRef(ref1);
-        Reference reference2 = SHEET.getRef(ref2);
+        Reference reference1 = SHEET.getRef(ref1);          //Cast de expression??
+        Reference reference2 = SHEET.getRef(ref2);               //Cast de expression??
 
         return new Mult(reference1, reference2);
+    }
+
+    public static Reference GetReference(String name)   {
+        try {
+            return SHEET.getRef(name);
+        } catch (NotValidCellException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

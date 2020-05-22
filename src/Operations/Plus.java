@@ -5,6 +5,7 @@ import Value.NoValue;
 import Value.SomeValue;
 import spreadsheet.Cell;
 import spreadsheet.Expression;
+import spreadsheet.Sheet;
 
 import java.util.Set;
 
@@ -28,30 +29,22 @@ public class Plus extends Operation {
         return new NoValue();
     }
 
+    /*
     @Override
     public Set<Cell> references() {
         return references;
     }
-
+*/
     @Override
-    public void register(Cell cell) {
-        references.add(cell);
+    public void addListener(Cell cell) {
+        exp1.addListener(cell);
+        exp2.addListener(cell);
     }
-
+/*
     @Override
-    public void unregister(Cell cell) {
-
+    public void notifyListeners(Set<Cell> references) {
     }
-
-    @Override
-    public void notifyObservers(Set<Cell> references) {
-        for(Cell cell : references){
-           // cell.evaluate();
-            cell.update(this.evaluate());
-        }
-    }
-    @Override
-    public boolean isOperation(){ return true; }
+*/
 
     public int operate(int i1, int i2){
         return i1 + i2;

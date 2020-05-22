@@ -1,6 +1,7 @@
 package Value;
 
 import spreadsheet.Cell;
+import spreadsheet.Sheet;
 
 import java.util.Set;
 
@@ -25,33 +26,25 @@ public class SomeValue extends MaybeValue {
     public MaybeValue evaluate() {
         return new SomeValue(this.value);
     }
-
+/*
     @Override
     public Set<Cell> references() {
         return references;
     }
+*/
 
     @Override
-    public void register(Cell cell) {
-        references.add(cell);
+    public void addListener(Cell cell) {
+        // un valor no ha d'afegir a references
+        // references.add(cell);
     }
 
+    /*
     @Override
-    public void unregister(Cell cell) {
-
-    }
-
-    @Override
-    public void notifyObservers(Set<Cell> references) {
+    public void notifyListeners(Set<Cell> references) {
         for(Cell cell : references){
             cell.evaluate();
-            //cell.update(this.evaluate());
         }
     }
-
-    @Override
-    public boolean isOperation() {
-        return false;
-    }
-
+*/
 }

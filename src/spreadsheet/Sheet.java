@@ -22,6 +22,8 @@ public class Sheet {
                 Cell cell = new Cell();
                 Reference ref = new Reference(cell);
                 String key = searchKey(i,j);
+                // only for debug
+                cell.name = key;
                 table.put(key, cell);
                 cellReferences.put(key, ref);
             }
@@ -51,6 +53,8 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
+        // Cell currentCell = table.get(name);
+        // return currentCell.evaluate();
         return table.get(name).val;
     }
 
@@ -59,29 +63,37 @@ public class Sheet {
             throw new NotValidCellException();
         }
         Cell currentCell = getCell(name);
-        Reference ref = getRef(name);
-        addReferencesToNewExpr(ref, expr);
         currentCell.set(expr);
-/*        expr.register(currentCell);
-        notifyListeners(currentCell, expr);*/
+
+        expr.addListener(currentCell);
+
+        notifyListeners(currentCell, expr);
+
+
         table.put(name, currentCell);
     }
 
-    private void addReferencesToNewExpr(Reference ref, Expression expr) {
-        Set<Cell> refs = ref.references();
-        for(Cell cell: refs){
-            expr.register(cell);
-        }
-    }
-
     private void notifyListeners(Cell currentCell, Expression expr) {
+
         Expression currentExp = currentCell.exp;
-        Set<Cell> references = currentExp.references();
+        var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
+        /*
         for(Cell cell : references){
-            cell.evaluate();
-           //cell.update(expr.evaluate());
-           // cell.update(expr);
+            var e = cell.exp;
+            cell.expChanged(e);
         }
+         */
+        String name = "";
+        while (! references.isEmpty())
+        {
+            for(Cell cell : references){
+                var e = cell.exp;
+                cell.expChanged(e);
+                name = cell.name;
+            }
+            references = SpreadSheet.GetReference(name).references;
+        }
+
     }
 
     public void clearTable(int size) {
