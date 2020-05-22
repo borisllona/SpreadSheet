@@ -16,7 +16,7 @@ public class Sheet {
     }
 
     private void createStructure(int size) {
-
+        //ToDo: aplicar patró fatory method (lazy)
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 Cell cell = new Cell();
@@ -78,7 +78,7 @@ public class Sheet {
     }
 
     private void notifyListeners(Cell currentCell, Expression expr) {
-
+        //ToDo: refactor eliminar for each, si fem una cela una referencia
         // Expression currentExp = currentCell.exp;
         var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
         /*
