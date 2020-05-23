@@ -152,12 +152,4 @@ public class SpreadSheet {
         return new Mult(reference1, reference2);
     }
 
-   /* public static Reference GetReference(String name)   {
-        try {
-            return SHEET.getRef(name);
-        } catch (NotValidCellException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
 }
