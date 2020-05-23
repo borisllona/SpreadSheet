@@ -37,7 +37,7 @@ public class SpreadSheet {
     }
 
     public static Expression plus(Expression expr1, int value2){
-        MaybeValue v2 = new SomeValue(value2);
+        SomeValue v2 = new SomeValue(value2);
 
         return new Plus(expr1, v2);
     }
@@ -49,20 +49,20 @@ public class SpreadSheet {
     }
 
     public static Expression plus(int value1, Expression expr2){
-        MaybeValue v1 = new SomeValue(value1);
+        SomeValue v1 = new SomeValue(value1);
 
         return new Plus(v1, expr2);
     }
 
     public static Expression plus(int value1, int value2){
-        MaybeValue v1 = new SomeValue(value1);
-        MaybeValue v2 = new SomeValue(value2);
+        SomeValue v1 = new SomeValue(value1);
+        SomeValue v2 = new SomeValue(value2);
 
         return new Plus(v1, v2);
     }
 
     public static Expression plus(int value1, String ref2) throws NotValidCellException {
-        MaybeValue v1 = new SomeValue(value1);
+        SomeValue v1 = new SomeValue(value1);
         Cell cell = SHEET.getCell(ref2);             //Cast de expression??
 
         return new Plus(v1, new Reference(cell));
@@ -76,7 +76,7 @@ public class SpreadSheet {
 
     public static Expression plus(String ref1, int value2) throws NotValidCellException {
         Cell cell = SHEET.getCell(ref1);
-        MaybeValue v1 = new SomeValue(value2);
+        SomeValue v1 = new SomeValue(value2);
 
         return new Plus(new Reference(cell), v1);
     }
