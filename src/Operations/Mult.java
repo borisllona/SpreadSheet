@@ -12,7 +12,6 @@ public class Mult extends Operation {
     public Mult(Expression e1, Expression e2) {
         super(e1, e2);
     }
-   // private Set<Cell> references;
 
     @Override
     public MaybeValue evaluate() {
@@ -44,14 +43,7 @@ public class Mult extends Operation {
         exp1.registerListener(cell);
         exp2.registerListener(cell);
     }
-    /*
-    @Override
-    public void notifyListeners(Set<Cell> references) {
-        for(Cell cell : references){
-            cell.evaluate();
-        }
-    }
-    */
+
     public int operate(int i1, int i2){
         return i1 * i2;
     }

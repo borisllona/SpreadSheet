@@ -9,5 +9,4 @@ public interface Expression {
     Set<Cell> references();
     void registerListener(Cell cell);
     void unregisterListener(Cell cell);
-
 }

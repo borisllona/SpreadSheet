@@ -16,13 +16,11 @@ public class Sheet {
     }
 
     private void createStructure(int size) {
-        //ToDo: aplicar patró fatory method (lazy)
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 Cell cell = new Cell();
                 Reference ref = new Reference(cell);
                 String key = searchKey(i,j);
-                // only for debug
                 cell.name = key;
                 table.put(key, cell);
                 cellReferences.put(key, ref);
@@ -53,8 +51,7 @@ public class Sheet {
         if(!table.containsKey(name)){
             throw new NotValidCellException();
         }
-        // Cell currentCell = table.get(name);
-        // return currentCell.evaluate();
+
         return table.get(name).val;
     }
 
@@ -65,22 +62,19 @@ public class Sheet {
 
         Cell currentCell = getCell(name);
 
-        // Elimina referencies de l'expressió anterior
         currentCell.exp.unregisterListener(currentCell);
 
         currentCell.set(expr);
         expr.registerListener(currentCell);
 
-        notifyListeners(currentCell, expr);
+        notifyListeners(currentCell);
 
 
         table.put(name, currentCell);
     }
 
-    private void notifyListeners(Cell currentCell, Expression expr) throws NotValidCellException {
-        //ToDo: refactor eliminar for each, si fem una cela una referencia
-        // Expression currentExp = currentCell.exp;
-        //var references = SpreadSheet.GetReference(currentCell.name).references; // currentExp.references();
+    private void notifyListeners(Cell currentCell) throws NotValidCellException {
+
         Reference ref = getRef(currentCell.name);
         Set<Cell> references = ref.references();
 
@@ -88,12 +82,12 @@ public class Sheet {
         while (! references.isEmpty())
         {
             for(Cell cell : references){
-                var e = cell.exp;
+                Expression e = cell.exp;
                 cell.update(e);
                 name = cell.name;
             }
             ref = getRef(name);
-            references = ref.references(); //SpreadSheet.GetReference(name).references;
+            references = ref.references();
         }
 
     }

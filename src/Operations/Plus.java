@@ -11,8 +11,6 @@ import java.util.Set;
 
 public class Plus extends Operation {
 
-    private Set<Cell> references;
-
     public Plus(Expression e1, Expression e2) {
         super(e1, e2);
     }
