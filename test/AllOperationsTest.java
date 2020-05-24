@@ -1,11 +1,8 @@
 import Value.SomeValue;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import spreadsheet.NotValidCellException;
-import spreadsheet.Reference;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static spreadsheet.SpreadSheet.*;
 import static spreadsheet.SpreadSheet.clear;
