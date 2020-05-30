@@ -1,6 +1,7 @@
 package spreadsheet;
 
 import Value.MaybeValue;
+import Value.NoValue;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Sheet {
     }
 
     private void createStructure(int size) {
+
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
                 Cell cell = new Cell();
@@ -62,34 +64,30 @@ public class Sheet {
 
         Cell currentCell = getCell(name);
 
-        currentCell.exp.unregisterListener(currentCell);
-
+        // Elimina referencies de l'expressió anterior
+        currentCell.exp.cleanListener(currentCell);
         currentCell.set(expr);
-        expr.registerListener(currentCell);
-
+        expr.addListener(currentCell);
         notifyListeners(currentCell);
-
 
         table.put(name, currentCell);
     }
 
+
     private void notifyListeners(Cell currentCell) throws NotValidCellException {
 
-        Reference ref = getRef(currentCell.name);
-        Set<Cell> references = ref.references();
+        var references = getRef(currentCell.name).references;
 
         String name = "";
         while (! references.isEmpty())
         {
             for(Cell cell : references){
-                Expression e = cell.exp;
-                cell.update(e);
+                var e = cell.exp;
+                cell.expChanged(e);
                 name = cell.name;
             }
-            ref = getRef(name);
-            references = ref.references();
+            references = getRef(name).references;
         }
-
     }
 
     public void clearTable(int size) {

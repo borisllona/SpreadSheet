@@ -26,20 +26,29 @@ public class SomeValue extends MaybeValue {
     public MaybeValue evaluate() {
         return new SomeValue(this.value);
     }
-
+/*
     @Override
     public Set<Cell> references() {
         return references;
     }
+*/
 
     @Override
-    public void registerListener(Cell cell) {
-        references.add(cell);
+    public void addListener(Cell cell) {
+        // un valor no ha d'afegir a references
+        // references.add(cell);
     }
 
     @Override
-    public void unregisterListener(Cell cell) {
-        references.remove(cell);
+    public void cleanListener(Cell cell) {
     }
 
+    /*
+    @Override
+    public void notifyListeners(Set<Cell> references) {
+        for(Cell cell : references){
+            cell.evaluate();
+        }
+    }
+*/
 }

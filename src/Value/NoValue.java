@@ -8,10 +8,11 @@ import java.util.Set;
 public class NoValue extends MaybeValue {
     public static final NoValue INSTANCE = new NoValue();
 
-    public NoValue() {
+    private NoValue() {
         super.setValue(false);
     }
 
+    //RETORNARA UNA INSTANCIA NO VALUE SINGLETON
     @Override
     public boolean hasValue() {
         return false;
@@ -22,20 +23,11 @@ public class NoValue extends MaybeValue {
         return NoValue.INSTANCE;
     }
 
-
     @Override
-    public Set<Cell> references() {
-        return references;
+    public void addListener(Cell cell) {
+    }
+    @Override
+    public void cleanListener(Cell cell) {
     }
 
-
-    @Override
-    public void registerListener(Cell cell) {
-        references.add(cell);
-    }
-
-    @Override
-    public void unregisterListener(Cell cell) {
-        references.remove(cell);
-    }
 }

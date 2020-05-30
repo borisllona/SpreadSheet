@@ -19,21 +19,29 @@ public class Reference implements Expression {
         return Ref.evaluate();
     }
 
-
+    /*
     @Override
     public Set<Cell> references() {
         return this.references;
     }
-
+*/
     @Override
-    public void registerListener(Cell cell) {
+    public void addListener(Cell cell) {
         references.add(cell);
     }
 
     @Override
-    public void unregisterListener(Cell cell) {
+    public void cleanListener(Cell cell) {
         references.remove(cell);
     }
 
+/*
+    @Override
+    public void notifyListeners(Set<Cell> references) {
+        for(Cell cell : references){
+            cell.expChanged(this);
+        }
+    }
+*/
 
 }

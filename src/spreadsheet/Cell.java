@@ -3,13 +3,13 @@ package spreadsheet;
 import Value.MaybeValue;
 import Value.NoValue;
 
-public class Cell implements observer{
+public class Cell {
     MaybeValue val;
     Expression exp;
     String name;
 
     public Cell(){
-        val = new NoValue();
+        val = NoValue.INSTANCE;
         exp = val;
     }
 
@@ -22,8 +22,9 @@ public class Cell implements observer{
         this.val = exp.evaluate();
     }
 
-     @Override
-    public void update(Expression e) {
+    // @Override
+    public void expChanged(Expression e) {
         this.val = e.evaluate();
+
     }
 }
